@@ -16,9 +16,14 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = [
+    ".document",
+    "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.md",
+    "Rakefile",
     "VERSION",
+    "command-builder.gemspec",
     "lib/command-builder.rb",
     "test.rb"
   ]
