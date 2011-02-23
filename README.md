@@ -50,5 +50,5 @@ Copyright
 Copyright &copy; 2011 [Martin Kozák][3]. See `LICENSE.txt` for
 further details.
 
-[2]: http://github.com/martinkozak/qrpc/issues
+[2]: http://github.com/martinkozak/command-builder/issues
 [3]: http://www.martinkozak.net/
