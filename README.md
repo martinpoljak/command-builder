@@ -12,7 +12,7 @@ command line from its arguments. Here is real example of call to
     cmd << :preserve
     cmd << "image.jpg"
     
-    cmd.to_s    # will return 'jpegoptim -m 2 --preserve
+    cmd.to_s    # will return 'jpegoptim -m 2 --preserve image.jpg
     
 Value escaping and assignments are supported automatically of sure, 
 so call:
