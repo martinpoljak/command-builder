@@ -256,12 +256,15 @@ class CommandBuilder
     
     ##
     # Resets the arguments and parameters so prepares it for new build.
+    #
+    # @return [CommandBuilder] self instance
     # @since 0.1.1
     #
     
     def reset!
         @args = [ ]
         @params = [ ]
+        self
     end
     
     alias :reset :"reset!"
