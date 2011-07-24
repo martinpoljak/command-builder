@@ -1,6 +1,8 @@
 # encoding: utf-8
+# (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
 require "hash-utils/object"
+require "hash-utils/array"
 
 ##
 # Represents one command line command with arguments and parameters.
@@ -61,8 +63,7 @@ class CommandBuilder
     def initialize(command, separators = ["-", " ", "--", "="])
         @command = command
         @separators = separators
-        @args = [ ]
-        @params = [ ]
+        self.reset!
     end
     
     ##
@@ -167,9 +168,9 @@ class CommandBuilder
     #
     
     def add(option, value = nil)
-        if option.kind_of? Symbol or not value.nil?
+        if option.symbol? or not value.nil?
             self.argument(option, value)
-        elsif option.kind_of? Array
+        elsif option.array?
             self.parameters(option)
         else
             self.parameter(option)
@@ -253,6 +254,18 @@ class CommandBuilder
         return cmd
     end
     
+    ##
+    # Resets the arguments and parameters so prepares it for new build.
+    # @since 0.1.1
+    #
+    
+    def reset!
+        @args = [ ]
+        @params = [ ]
+    end
+    
+    alias :reset :"reset!"
+    
     
     private
     
@@ -268,18 +281,18 @@ class CommandBuilder
         short = (name.length == 1)
         
         if short
-            cmd << @separators[0]
+            cmd << @separators.first
         else
-            cmd << @separators[2]
+            cmd << @separators.third
         end
         cmd << name
         
         # Value
         if not value.nil?
             if short
-                cmd << @separators[1]
+                cmd << @separators.second
             else
-                cmd << @separators[3]
+                cmd << @separators.fourth
             end
             cmd << self.quote(value.to_s)
         end
