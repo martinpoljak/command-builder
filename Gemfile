@@ -2,6 +2,7 @@ source "http://rubygems.org"
 # Add dependencies required to use your gem here.
 # Example:
   gem "hash-utils", ">= 0.18.0"
+  gem "pipe-run", ">= 0.2.1"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.

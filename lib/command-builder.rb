@@ -3,6 +3,7 @@
 
 require "hash-utils/object"
 require "hash-utils/array"
+require "pipe-run"
 
 ##
 # Represents one command line command with arguments and parameters.
@@ -224,11 +225,16 @@ class CommandBuilder
     end
     
     ##
-    # Executes the command.
+    # Executes the command. If block given, takes it output of the 
+    # command and runs it asynchronously using EventMachine.
+    #
+    # @see https://github.com/martinkozak/pipe-run
+    # @param [Proc] block if asynchronous run
+    # @return [String] output of the command or nil if asynchronous
     #
     
-    def execute
-        Kernel.system(self.to_s)
+    def execute(&block)
+        Pipe::run(self.to_s, &block)
     end
     
     alias :exec :execute
