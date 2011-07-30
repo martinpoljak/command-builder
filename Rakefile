@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "command-builder"
   gem.homepage = "https://github.com/martinkozak/command-builder"
   gem.license = "MIT"
-  gem.summary = 'Builds call to some command runnable from shell command line from its arguments.'
+  gem.summary = 'Builds command runnable from shell by simple and ellegant way. Also allows both synchronous executing or asynchronous one using EventMachine.'
   gem.email = "martinkozak@martinkozak.net"
   gem.authors = ["Martin Kozák"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

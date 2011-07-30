@@ -1,9 +1,10 @@
 Command Builder
 ===============
 
-**Command Builder** builds call to some command runnable from shell 
-command line from its arguments. Here is real example of call to 
-`jpegoptim`:
+**Command Builder** builds command runnable from shell by simple and 
+ellegant way. Also allows both synchronous executing or asynchronous 
+one using [EventMachine][1]. Here is an real example of call 
+to `jpegoptim`:
 
     require "command-builder"
     cmd = CommandBuilder::new(:jpegoptim)
@@ -20,6 +21,18 @@ so call:
     
 …will be interpreted as `jpegoptim --dest="it's \"my\" folder"`. It also
 takes spaces into the account.
+
+### Executing
+
+Command can be executed directly by call:
+
+    cmd.execute!               # for synchronous executing or...
+    cmd.execute do |output|    # ...for asynchronous executing
+        # ...
+    end
+    
+Asynchronous executing requires [EventMachine][1] environment to be run.
+    
 
 ### Flexibility
 
@@ -50,5 +63,6 @@ Copyright
 Copyright &copy; 2011 [Martin Kozák][3]. See `LICENSE.txt` for
 further details.
 
+[1]: http://rubyeventmachine.com/
 [2]: http://github.com/martinkozak/command-builder/issues
 [3]: http://www.martinkozak.net/
