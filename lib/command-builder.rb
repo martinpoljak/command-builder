@@ -238,6 +238,8 @@ class CommandBuilder
     end
     
     alias :exec :execute
+    alias :"exec!" :execute
+    alias :"execute!" :execute
     
     ##
     # Converts command to string.
