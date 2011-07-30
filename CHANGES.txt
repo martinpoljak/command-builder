@@ -2,6 +2,7 @@
 0.2.0 (2011-07-30)
 * asynchronous executing support using 'pipe-run'
 * two more aliases for the #execute method
+* readme correction
 
 0.1.1 (2011-07-24)
 * #reset method added
