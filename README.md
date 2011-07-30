@@ -17,6 +17,7 @@ to `jpegoptim`:
     
 Value escaping and assignments are supported automatically of sure, 
 so call:
+
     cmd.arg(:dest, './it\'s "my" folder')
     
 …will be interpreted as `jpegoptim --dest="it's \"my\" folder"`. It also
@@ -38,9 +39,11 @@ Asynchronous executing requires [EventMachine][1] environment to be run.
 
 Syntax described above is supported by default, but you can achieve for
 example an Windows like syntax:
+
     jpegoptim /m:2 -dest "directory"
     
 …simply by assigning:
+
     cmd.separators = ["/", ":", "-", " "]
     
 For illustration, the default one is `["-", " ", "--", "="]`.
