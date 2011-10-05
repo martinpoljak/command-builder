@@ -1,4 +1,7 @@
 
+0.2.1
+* #execute yields both output and done indicator
+
 0.2.0 (2011-07-30)
 * asynchronous executing support using 'pipe-run'
 * two more aliases for the #execute method
