@@ -234,7 +234,9 @@ class CommandBuilder
     #
     
     def execute(&block)
-        Pipe::run(self.to_s, &block)
+        Pipe::run(self.to_s) do |out|
+            block.call(out, out.strip.empty?)
+        end
     end
     
     alias :exec :execute
