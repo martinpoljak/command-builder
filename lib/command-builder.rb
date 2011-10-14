@@ -237,7 +237,8 @@ class CommandBuilder
         callback = nil
         if not block.nil?
             callback = Proc::new do |out|
-            block.call(out, out.strip.empty?)
+                block.call(out, out.strip.empty?)
+            end
         end
         
         Pipe::run(self.to_s, &callback)
