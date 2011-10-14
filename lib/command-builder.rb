@@ -234,9 +234,13 @@ class CommandBuilder
     #
     
     def execute(&block)
-        Pipe::run(self.to_s) do |out|
+        callback = nil
+        if not block.nil?
+            callback = Proc::new do |out|
             block.call(out, out.strip.empty?)
         end
+        
+        Pipe::run(self.to_s, &callback)
     end
     
     alias :exec :execute
