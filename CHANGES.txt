@@ -1,5 +1,5 @@
 
-0.2.1
+0.2.1 (2011-10-18)
 * #execute yields both output and done indicator
 
 0.2.0 (2011-07-30)
