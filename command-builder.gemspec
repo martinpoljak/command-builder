@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{command-builder}
-  s.version = "0.2.0"
+  s.name = "command-builder"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Martin Kozák}]
-  s.date = %q{2011-07-30}
-  s.email = %q{martinkozak@martinkozak.net}
+  s.authors = ["Martin Koz\u{e1}k"]
+  s.date = "2011-10-18"
+  s.email = "martinkozak@martinkozak.net"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -28,11 +28,11 @@ Gem::Specification.new do |s|
     "lib/command-builder.rb",
     "test.rb"
   ]
-  s.homepage = %q{https://github.com/martinkozak/command-builder}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.5}
-  s.summary = %q{Builds command runnable from shell by simple and ellegant way. Also allows both synchronous executing or asynchronous one using EventMachine.}
+  s.homepage = "https://github.com/martinkozak/command-builder"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.11"
+  s.summary = "Builds command runnable from shell by simple and ellegant way. Also allows both synchronous executing or asynchronous one using EventMachine."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
