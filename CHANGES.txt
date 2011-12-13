@@ -1,4 +1,8 @@
 
+0.2.2 (2011-12-13)
+* switch to 'jeweler2' gem
+* switch to STL's Shellwords class for arguments escaping
+
 0.2.1 (2011-10-18)
 * #execute yields both output and done indicator
 
