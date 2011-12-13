@@ -3,6 +3,7 @@
 
 require "hash-utils/object"
 require "hash-utils/array"
+require "shellwords"
 require "pipe-run"
 
 ##
@@ -201,27 +202,7 @@ class CommandBuilder
     
     def quote(value)
         value = value.to_s
-
-        # Looks for " and '
-        single = value["'"].to_b
-        double = value['"'].to_b
-        
-        # According to found characters selects quotation
-        if single and value
-            value = value.gsub('"', '\\"')
-            quotation = '"'
-        elsif single
-            quotation = '"'
-        elsif double
-            quotation = "'"
-        elsif value[" "]
-            quotation = '"'
-        else
-            quotation = ""
-        end
-
-        # Returns
-        return quotation + value + quotation
+        Shellwords::escape(value)
     end
     
     ##
