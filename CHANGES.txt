@@ -1,4 +1,7 @@
 
+0.3.0 (2012-01-22)
+* parameters and arguments in fixed order
+
 0.2.2 (2011-12-13)
 * switch to 'jeweler2' gem
 * switch to STL's Shellwords class for arguments escaping
