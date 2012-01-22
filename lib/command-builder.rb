@@ -94,6 +94,7 @@ class CommandBuilder
     
     def argument(name, value = nil)
         @args << [name, value]
+        @order << :argument
     end
     
     alias :arg :argument
@@ -117,6 +118,7 @@ class CommandBuilder
     
     def parameter(value)
         @params << value
+        @order << :parameter
     end
     
     alias :param :parameter
@@ -139,6 +141,8 @@ class CommandBuilder
             return @params
         else
             @params += values
+            orders = [:parameter] * values.length
+            @order.push(*orders)
         end
     end
     
@@ -236,17 +240,19 @@ class CommandBuilder
 
     def to_s
         cmd = @command.to_s.gsub(" ", "\\ ")
+        args = @args.dup
+        params = @params.dup
         
-        # Arguments
-        @args.each do |name, value|
-            __add_arg(cmd, name, value)
+        @order.each do |type|
+            if type == :argument
+                name, value = args.shift
+                __add_arg(cmd, name, value)
+            else
+                param = params.shift
+                cmd << " " << self.quote(param.to_s)
+            end
         end
-        
-        # Parameters
-        @params.each do |param|
-            cmd << " " << self.quote(param.to_s)
-        end
-        
+
         return cmd
     end
     
@@ -260,6 +266,7 @@ class CommandBuilder
     def reset!
         @args = [ ]
         @params = [ ]
+        @order = [ ]
         self
     end
     
