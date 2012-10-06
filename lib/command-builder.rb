@@ -275,9 +275,11 @@ class CommandBuilder
 
     ##
     # Returns whether this command has any either arguments or parameters set.
+    # @return [Boolean]
     #
+    
     def empty?
-      (@args.empty? && @params.empty?)
+      @args.empty? and @params.empty?
     end
     
     private
