@@ -272,6 +272,13 @@ class CommandBuilder
     
     alias :reset :"reset!"
     
+
+    ##
+    # Returns whether this command has any either arguments or parameters set.
+    #
+    def empty?
+      (@args.empty? && @params.empty?)
+    end
     
     private
     
