@@ -11,14 +11,14 @@ rescue Bundler::BundlerError => e
 end
 
 require 'rake'
-require 'jeweler2'
+require 'jeweler'
 
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "command-builder"
   gem.homepage = "https://github.com/martinkozak/command-builder"
   gem.license = "MIT"
-  gem.summary = 'Builds command runnable from shell by simple and ellegant way. Also allows both synchronous executing or asynchronous one using EventMachine.'
+  gem.summary = 'Builds command runnable from shell by simple and elegant way. Allows both synchronous executing or asynchronous using EventMachine.'
   gem.email = "martinkozak@martinkozak.net"
   gem.authors = ["Martin Kozák"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

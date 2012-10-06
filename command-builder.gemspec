@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Koz\u{e1}k"]
-  s.date = "2012-01-22"
+  s.date = "2012-10-06"
   s.email = "martinkozak@martinkozak.net"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -31,8 +31,8 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/martinkozak/command-builder"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
-  s.summary = "Builds command runnable from shell by simple and ellegant way. Also allows both synchronous executing or asynchronous one using EventMachine."
+  s.rubygems_version = "1.8.24"
+  s.summary = "Builds command runnable from shell by simple and elegant way. Allows both synchronous executing or asynchronous using EventMachine."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -41,18 +41,18 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<hash-utils>, [">= 0.18.0"])
       s.add_runtime_dependency(%q<pipe-run>, [">= 0.2.1"])
       s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
-      s.add_development_dependency(%q<jeweler2>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
     else
       s.add_dependency(%q<hash-utils>, [">= 0.18.0"])
       s.add_dependency(%q<pipe-run>, [">= 0.2.1"])
       s.add_dependency(%q<bundler>, [">= 1.0.0"])
-      s.add_dependency(%q<jeweler2>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
     end
   else
     s.add_dependency(%q<hash-utils>, [">= 0.18.0"])
     s.add_dependency(%q<pipe-run>, [">= 0.2.1"])
     s.add_dependency(%q<bundler>, [">= 1.0.0"])
-    s.add_dependency(%q<jeweler2>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
   end
 end
 
