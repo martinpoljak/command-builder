@@ -1,7 +1,7 @@
 Command Builder
 ===============
 
-**Command Builder** builds command runnable from shell by simple and 
+**command-builder** builds command runnable from shell by simple and 
 ellegant way. Also allows both synchronous executing or asynchronous 
 one using [EventMachine][1]. Here is an real example of call 
 to `jpegoptim`:
