@@ -1,10 +1,8 @@
 # encoding: utf-8
 #
-# (c) 2011-2012 Martin Kozák (martinkozak@martinkozak.net)
+# (c) 2011-2015 Martin Poljak (martin@poljak.cz)
 #     Patched by Jacob Evans (jacob@dekz.net).
 
-require "hash-utils/object"
-require "hash-utils/array"
 require "shellwords"
 require "pipe-run"
 
@@ -21,7 +19,7 @@ class CommandBuilder
 
     attr_accessor :command
     @command
-    
+
     ##
     # Holds separators matrix. It's four-items array:
     # - short argument separator,
@@ -36,12 +34,12 @@ class CommandBuilder
     #
     # @return [Array] separators matrix
     #
-    
+
     attr_accessor :separators
     @separators
-    
+
     ##
-    # Holds arguments array. Each item is array pair with argument 
+    # Holds arguments array. Each item is array pair with argument
     # name and value.
     #
     # @return [Array] array of argument pairs
@@ -49,13 +47,13 @@ class CommandBuilder
 
     attr_accessor :args
     @args
-    
+
     ##
     # Holds parameters array.
     #
-    
+
     @params
-    
+
     ##
     # Constructor.
     #
@@ -63,17 +61,17 @@ class CommandBuilder
     # @param [Array] separators separators matrix
     # @see #separators
     #
-    
+
     def initialize(command, separators = ["-", " ", "--", "="])
         @command = command
         @separators = separators
         self.reset!
     end
-    
+
     ##
     # Adds argument to command.
     #
-    # One-letter arguments will be treated as "short" arguments for the 
+    # One-letter arguments will be treated as "short" arguments for the
     # syntax purposes, other as "long". See {#separators}.
     #
     # @example with default set of {#separators}
@@ -87,46 +85,46 @@ class CommandBuilder
     #   @cmd[:m] = 2                # will be rendered as 'jpegoptim -m 2'
     #   @cmd[:max] = 2              # will be rendered as 'jpegoptim -m 2 --max=2'
     #
-    #   # But be warn, it pushes to arguments array as you can se, so 
+    #   # But be warn, it pushes to arguments array as you can se, so
     #   # already existing values will not be replaced!
     #
     # @param [String, Symbol] name of the argument
     # @param [Object] value of the argument
     #
-    
+
     def argument(name, value = nil)
         @args << [name, value]
         @order << :argument
     end
-    
+
     alias :arg :argument
     alias :[]= :argument
-    
+
     ##
     # Returns array of argument pairs with given name.
     #
     # @param [String, Symbol] name argument name
     # @return [Array] array of array pairs with this name
     #
-    
+
     def [](name)
-        @args.select { |k, v| name == k } 
+        @args.select { |k, v| name == k }
     end
-    
+
     ##
     # Adds parameter to command.
     # @param [Object] value value of the prameter convertable to String.
-    # 
-    
+    #
+
     def parameter(value)
         @params << value
         @order << :parameter
     end
-    
+
     alias :param :parameter
-    
+
     ##
-    # Adds multiple parameters to command at once. If no values are 
+    # Adds multiple parameters to command at once. If no values are
     # given, returns the current parameters array.
     #
     # @overload parameters
@@ -137,7 +135,7 @@ class CommandBuilder
     #   @param [Array] values array of values
     #   @see #parameter
     #
-    
+
     def parameters(values = nil)
         if values.nil?
             return @params
@@ -147,7 +145,7 @@ class CommandBuilder
             @order.push(*orders)
         end
     end
-    
+
     alias :params :parameters
 
     ##
@@ -174,25 +172,25 @@ class CommandBuilder
     #   cmd << :preserve    # will be rendered as 'jpegoptim --preserve'
     #   cmd << "file.jpg"   # will be rendered as 'jpegoptiom --preserve file.jpg'
     #
-    
+
     def add(option, value = nil)
-        if option.symbol? or not value.nil?
+        if option.kind_of? Symbol or not value.nil?
             self.argument(option, value)
-        elsif option.array?
+        elsif option.kind_of? Array
             self.parameters(option)
         else
             self.parameter(option)
         end
     end
-    
+
     alias :<< :add
-    
+
     ##
     # Quotes value for use in command line.
     #
-    # Uses some heuristic for setting the right quotation. If both 
+    # Uses some heuristic for setting the right quotation. If both
     # " and ' are found, escapes ' by \ and quotes by ". If only one of
-    # them found, escapes by the second one. If space found in the 
+    # them found, escapes by the second one. If space found in the
     # string, quotes by " too.
     #
     # @example
@@ -205,21 +203,21 @@ class CommandBuilder
     # @param [String] value string for escaping
     # @return [String] quoted value
     #
-    
+
     def quote(value)
         value = value.to_s
         Shellwords::escape(value)
     end
-    
+
     ##
-    # Executes the command. If block given, takes it output of the 
+    # Executes the command. If block given, takes it output of the
     # command and runs it asynchronously using EventMachine.
     #
     # @see https://github.com/martinkozak/pipe-run
     # @param [Proc] block if asynchronous run
     # @return [String] output of the command or nil if asynchronous
     #
-    
+
     def execute(&block)
         callback = nil
         if not block.nil?
@@ -227,14 +225,14 @@ class CommandBuilder
                 block.call(out, out.strip.empty?)
             end
         end
-        
+
         Pipe::run(self.to_s, &callback)
     end
-    
+
     alias :exec :execute
     alias :"exec!" :execute
     alias :"execute!" :execute
-    
+
     ##
     # Converts command to string.
     # @return [String] command in string form
@@ -244,7 +242,7 @@ class CommandBuilder
         cmd = @command.to_s.gsub(" ", "\\ ")
         args = @args.dup
         params = @params.dup
-        
+
         @order.each do |type|
             if type == :argument
                 name, value = args.shift
@@ -257,62 +255,62 @@ class CommandBuilder
 
         return cmd
     end
-    
+
     ##
     # Resets the arguments and parameters so prepares it for new build.
     #
     # @return [CommandBuilder] self instance
     # @since 0.1.1
     #
-    
+
     def reset!
         @args = [ ]
         @params = [ ]
         @order = [ ]
         self
     end
-    
+
     alias :reset :"reset!"
-    
+
 
     ##
     # Returns whether this command has any either arguments or parameters set.
     # @return [Boolean]
     #
-    
+
     def empty?
       @args.empty? and @params.empty?
     end
-    
+
     private
-    
+
     ##
     # Adds argument to command.
     #
-    
+
     def __add_arg(cmd, name, value)
         cmd << " "
         name = name.to_s
-        
+
         # Name
         short = (name.length == 1)
-        
+
         if short
-            cmd << @separators.first
+            cmd << @separators[0]
         else
-            cmd << @separators.third
+            cmd << @separators[2]
         end
         cmd << name
-        
+
         # Value
         if not value.nil?
             if short
-                cmd << @separators.second
+                cmd << @separators[1]
             else
-                cmd << @separators.fourth
+                cmd << @separators[3]
             end
             cmd << self.quote(value.to_s)
         end
     end
-    
+
 end

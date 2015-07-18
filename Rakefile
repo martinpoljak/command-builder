@@ -19,8 +19,8 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "https://github.com/martinkozak/command-builder"
   gem.license = "MIT"
   gem.summary = 'Builds command runnable from shell by simple and elegant way. Allows both synchronous executing or asynchronous using EventMachine.'
-  gem.email = "martinkozak@martinkozak.net"
-  gem.authors = ["Martin Kozák"]
+  gem.email = "martin@poljak.cz"
+  gem.authors = ["Martin Poljak"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
