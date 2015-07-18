@@ -6,23 +6,23 @@ ellegant way. Also allows both synchronous executing or asynchronous
 one using [EventMachine][1]. Here is an real example of call
 to `jpegoptim`:
 
-    ```ruby
-    require "command-builder"
-    cmd = CommandBuilder::new(:jpegoptim)
+```ruby
+require "command-builder"
+cmd = CommandBuilder::new(:jpegoptim)
 
-    cmd.arg(:m, 2)
-    cmd << :preserve
-    cmd << "image.jpg"
+cmd.arg(:m, 2)
+cmd << :preserve
+cmd << "image.jpg"
 
-    cmd.to_s    # will return 'jpegoptim -m 2 --preserve image.jpg'
-    ```
+cmd.to_s    # will return 'jpegoptim -m 2 --preserve image.jpg'
+```
 
 Value escaping and assignments are supported automatically of sure,
 so call:
 
-    ```ruby
-    cmd.arg(:dest, './it\'s "my" folder')
-    ```
+```ruby
+cmd.arg(:dest, './it\'s "my" folder')
+```
 
 …will be interpreted as `jpegoptim --dest="it's \"my\" folder"`. It also
 takes spaces into the account.
@@ -48,10 +48,10 @@ example an Windows like syntax:
 
 …simply by assigning:
 
-    ```ruby
-    cmd.separators = ["/", ":", "-", " "]
-    ```
-    
+```ruby
+cmd.separators = ["/", ":", "-", " "]
+```
+
 For illustration, the default one is `["-", " ", "--", "="]`.
 
 
